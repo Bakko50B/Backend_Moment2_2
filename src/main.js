@@ -2,7 +2,7 @@ window.onload = function () {
   getData();
 };
 
-let myContentDivEL = document.getElementById("content");
+const myContentDivEL = document.getElementById("content");
 
 async function getData() {
   const response = await fetch('http://localhost:3000/api/workexp');
@@ -24,53 +24,114 @@ async function getData() {
     myContentDivEL.innerHTML += `
       <ul>
         <li><span class="bold">Företagsnamn:</span> ${dataelement.companyname}</li>
-        <li><span class="bold">Jobtitel:</span> ${dataelement.jobtitle}</li>
+        <li><span class="bold">Jobbtitel:</span> ${dataelement.jobtitle}</li>
         <li><span class="bold">Arbetsort:</span> ${dataelement.location}</li>
         <li><span class="bold">Startdatum:</span> ${dataelement.startdate.split('T')[0]}</li>
         <li><span class="bold">Slutdatum:</span> ${endDate}</li> 
         <li><span class="bold">Arbetsbeskrivning:</span> ${description}</li>
         <li><span class="bold">Postcreated:</span> ${dataelement.postcreated.split('T')[0]}</li> 
-        <li><button value="${dataelement.id}">Radera</button></li>
+        <li>
+          <button class="update" id="update" value="${dataelement.id}">Uppdatera</button> 
+          <button class="delete" id="delete" value="${dataelement.id}">Radera</button>
+        </li>
       </ul>
     `;
   });
 }
+const populateForm = (postData) => {
+  const form = document.getElementById('updateForm'); 
+  form.style.display = 'block'; 
+  form.querySelector('[name="companyname"]').value = postData.companyname;
+  form.querySelector('[name="jobtitle"]').value = postData.jobtitle;
+  form.querySelector('[name="location"]').value = postData.location;
+  form.querySelector('[name="startdate"]').value = postData.startdate.split('T')[0];
+  form.querySelector('[name="enddate"]').value = postData.enddate ? postData.enddate.split('T')[0] : '';
+  form.querySelector('[name="description"]').value = postData.description || '';
+  form.querySelector('[name="id"]').value = postData.id;                
+};
 
-document.addEventListener('DOMContentLoaded', () => {
-  const parentElement = document.getElementById("content"); 
-
-  parentElement.addEventListener('click', async (event) => {
-    // Kontrollera om klicket sker på en knapp
-    if (event.target.tagName === 'BUTTON') {
-      // alert('Knapp klickad!');
-      
-      // Hämta ID från knappens värde
+// Händelse hantering av knapparna UPPDATERA och DELETE
+myContentDivEL.addEventListener('click', async (event) => {
+  // DELETEKNAPPEN
+  // Hantera radering
+  if (event.target.tagName === 'BUTTON' && event.target.classList.contains('delete')) {
       const id = event.target.value;
+      console.log(`Radera objekt med ID: ${id}`);
+
       const confirmDelete = confirm('Är du säker på att du vill radera detta?');
-
       if (confirmDelete) {
-        console.log(`Ta bort objekt med ID: ${id}`);
-
-        try {
-          // Skicka DELETE-förfrågan till API:et
-          const response = await fetch(`http://localhost:3000/api/workexp/${id}`, {
-            method: 'DELETE',
-          });
-          if (response.ok) {
-            alert(`Posten med ID ${id} har raderats!`);
-            // Ta bort elementet från DOM
-            const listItem = event.target.closest('ul'); // Hitta och ta bort hela posten
-            if (listItem) {
-              listItem.remove();
-            }
-          } else {
-            alert('Det gick inte att radera posten. Försök igen senare.');
+          try {
+              const response = await fetch(`http://localhost:3000/api/workexp/${id}`, {
+                  method: 'DELETE',
+              });
+              if (response.ok) {
+                  alert(`Posten med ID ${id} har raderats!`);
+                  const listItem = event.target.closest('ul');
+                  if (listItem) {
+                      listItem.remove();
+                  }
+              } else {
+                  alert('Det gick inte att radera posten. Försök igen senare.');
+              }
+          } catch (error) {
+              console.error('Ett fel inträffade vid radering:', error);
+              alert('Ett fel uppstod vid radering av posten.');
           }
-        } catch (error) {
-          console.error('Ett fel inträffade vid borttagning:', error);
-          alert('Ett fel uppstod vid radering av posten.');
-        }
       }
-    }
+  }
+
+  // UPDATEKNAPPEN
+  // Hantera uppdateringsinformation och visa formuläret för uppdatering.
+  if (event.target.tagName === 'BUTTON' && event.target.classList.contains('update')) {
+      const id = event.target.value;
+      console.log(`Uppdatera objekt med ID: ${id}`);
+      try {
+          const response = await fetch(`http://localhost:3000/api/workexp/${id}`);
+          if (response.ok) {
+              const postData = await response.json();
+              populateForm(postData); // Skicka data till formuläret
+          } else {
+              alert('Det gick inte att hämta data för uppdatering.');
+          }
+      } catch (error) {
+          console.error('Ett fel inträffade vid hämtning av data:', error);
+          alert('Ett fel uppstod vid hämtning av data.');
+      }
+  }
+});
+
+// Uppdatera apiet/databasen med den ändrade CV-posten
+// SUBMIT från Uppdateringsformuläret
+document.addEventListener('DOMContentLoaded', () => {
+  const updateForm = document.getElementById('updateForm');
+
+  updateForm.addEventListener('submit', async (event) => {
+      event.preventDefault();       
+
+      const formData = new FormData(updateForm);
+      const jsonData = Object.fromEntries(formData.entries()); 
+      const id = jsonData.id;       //Hämta ID för uppdateringen
+
+      try {
+          const response = await fetch(`http://localhost:3000/api/workexp/${id}`, {
+              method: 'PUT',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(jsonData),
+          });
+
+          if (response.ok) {
+              alert('Posten har uppdaterats!');
+              updateForm.style.display = 'none';  // Dölj formuläret
+              getData();                          // Uppdatera sidan
+              window.history.replaceState(null, '', window.location.pathname); // Ta bort parametrarna
+          } else {
+              alert('Det gick inte att uppdatera posten.');
+          }
+      } catch (error) {
+          console.error('Ett fel inträffade vid uppdatering:', error);
+          alert('Ett fel uppstod vid uppdateringen.');
+      }
   });
 });
