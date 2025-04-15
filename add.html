@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/src/add.js" type="module"></script>
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Hem</a></li>
+                <li class="active"><a href="add.html">Ny post</a></li>
+                <li><a href="about.html">Om</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Lägg till erfarenhet</h1>
+    <form method="post">
+        <fieldset>
+            <legend>Ny post</legend>
+            <label for="companyname">Företagsnamn:</label><br>
+            <input type="text" id="companyname" name="companyname" required><br>
+            <label for="jobtitle">Jobbtitel:</label><br>
+            <input type="text" name="jobtitle" id="jobtitle" required><br>
+            <label for="location">Plats:</label><br>
+            <input type="text" id="location" name="location" required><br>
+            <label for="startdate">Startdatum:</label><br>
+            <input type="date" name="startdate" id="startdate" required><br>
+            <label for="enddate">Slutdatum</label><br>
+            <input type="date" name="enddate" id="enddate"><br>
+            <label for="description">Beskrivning:</label><br>
+            <textarea name="description" id="description" placeholder="Beskrivning av arbetsuppgifterna"></textarea><br>
+            <button type="submit">Skicka!</button>
+        </fieldset>
+    </form>
+
+</body>
+
+</html>
