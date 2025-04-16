@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REST API - ABOUT</title>
+    <link rel="stylesheet" href="/src/css/style.css">
+</head>
+
+<body>
+    <main>
+
+        <div class="center">
+            <h1>OM</h1>
+            <h2>Moment 2_1 och 2_2</h2>
+        </div>
+        <div class="info">
+
+            <p>
+                Detta moment i kursen Backend-baserad webbutveckling har bestått av två olika delar. En backend-del som
+                sköter om kontakt med en databas och producerar JSON innehåll. Samt en del som konsumerar och tar hand
+                om JSON innehållet från det API som del 1 producerar. Sidan du läser nu finns på del 2.
+            </p>
+            <h2>Moment 1</h2>
+            <p>Jag började min uppgift med att göra moment 1. I kursmaterial finns det bra information om hur man skapar
+                ett REST API. Jag följde informationen i video och text på hur man kan göra för att skapa backend-delen
+                i uppgiften.<br>
+                Jag använde även grunden från det <a href="https://github.com/matdah/express-sample-api">tillgängliga
+                    repo</a> som vi kunde använda för att skapa serverdelen.
+            </p>
+            <h3>Databas</h3>
+            <p>Jag har en mySql/MariaDB som databas på serversidan. Första momentet gjorde jag med sqlite och ville nu
+                byta databas för att använda i skarpt läge. Tidigare har jag endast använt mysql för några övningar som
+                jag jort i denna kurs. <br>
+                Jag valde att följa strukturen som finns föreslagen på kursportalen.
+                <span>databas: cv <br>
+                    tabell: workexperience <br>
+                    | id | companyname | jobtitle | location | extra: startdate | enddate | description | <br>
+                </span><br>
+                inklusive de extra kolumnerna. Jag har även anammat konceptet från Mattias Dahlgren att ha en kolumn för
+                tidpunkt när posten skapades. Det känns som en bra extrainformation att ha med.
+            <p>
+                För mig kändes det naturligt att tillåta NULL i <span>enddate</span> och <span>description.</span> Att
+                lägga till ett arbete som man är i just nu kräver ett "öppet" slut. Detsamma gäller fältet
+                <span>description.</span> Jag känner att vissa arbeten inte kräver en beskriving och därför kan det
+                fältet få vara valfritt.
+            </p>
+            <h3>API</h3>
+            <p>APIet hanterar de olika delarna i CRUD.</p>
+            <ul>
+                <li>Create</li>
+                <li>Read</li>
+                <li>Update</li>
+                <li>Delete</li>
+            </ul>
+            <p>Endpoints i APIet är:</p>
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <h3>Kontroller</h3>
+            <p>För att validera data och ta hand om felinmatningar har jag inför kontroller av data och fält. Det finns
+                hantering av fel i databas&shy;uppkopplingar också. <br>
+                Jag uppdaterade <span>server.js</span> i slutet av arbetet i moment2_2. Jag ville implementera en
+                updatefunktion. Jag saknade då en get-route på serverdeln för att ta han om anrop till en enskild post.
+            </p>
+
+        </div>
+    </main>
+</body>
+
+</html>
