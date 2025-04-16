@@ -30,7 +30,7 @@ a:hover {
 
 body {
   width: 80%;
-  background-color: #b8bbf4;
+  background-color: #515496;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -40,7 +40,7 @@ body {
 }
 
 h1 {
-  font-size:2em;
+  font-size: 2em;
   line-height: 1.1;
   text-align: center;
 }
@@ -69,7 +69,7 @@ header nav ul li a:active {
 }
 
 .active {
-  background-color:rgb(182, 142, 247);
+  background-color: rgb(182, 142, 247);
 }
 
 #content {
@@ -124,9 +124,9 @@ header nav ul li a:active {
 }
 
 form {
-  width:50%;
+  width: 50%;
   margin: 0 auto;
-  
+
 }
 
 fieldset {
@@ -142,7 +142,7 @@ form textarea {
   padding: 10px;
 }
 
-form button{
+form button {
   padding: 5px 2rem;
   background-color: green;
   color: #fff;
@@ -182,7 +182,11 @@ footer {
     color: #213547;
     background-color: #ffffff;
   }
-  
+
+  body {
+    background-color: #b5b9eb;
+  }
+
   a:hover {
     color: #000ac5;
   }
@@ -190,13 +194,17 @@ footer {
   button {
     background-color: #f9f9f9;
   }
-}
 
-@media (max-width: 600px) {
-  form {
-    width: 100%;
+  footer a {
+    color: black;
   }
-  textarea {
-    width: 80%;
+
+  @media (max-width: 600px) {
+    form {
+      width: 100%;
+    }
+
+    textarea {
+      width: 80%;
+    }
   }
-}
