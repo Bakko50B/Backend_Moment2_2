@@ -11,6 +11,7 @@
 
 <body>
   <header>
+    <h1>CV</h1>
     <nav>
       <ul>
         <li class="active"><a href="index.html" >Hem</a></li>
@@ -20,29 +21,30 @@
     </nav>
   </header>
 
-  <div id="content">
-
-  </div>
-  <form id="updateForm" name="updateForm" style="display: none;">
-    <fieldset>
-      <legend>Uppdatera posten:</legend>
-      <input type="hidden" name="id">
-      <label for="companyname">Företagsnamn:</label><br>
-      <input type="text" id="companyname" name="companyname" required><br>
-      <label for="jobtitle">Jobtitel:</label><br>
-      <input type="text" id="jobtitle" name="jobtitle" required><br>
-      <label for="location">Arbetsort:</label><br>
-      <input type="text" id="location" name="location" required><br>
-      <label for="startdate">Startdatum:</label><br>
-      <input type="date" id="startdate" name="startdate" required><br>
-      <label for="enddate">Slutdatum:</label><br>
-      <input type="date" id="enddate" name="enddate"><br>
-      <label for="description">Beskrivning:</label><br>
-      <textarea name="description" id="description"></textarea><br>
-      <button type="submit" class="update">Uppdatera</button>
-      <button type="button" id="cancel" class="delete">Avbryt</button>
-    </fieldset>
-</form>
+  <main>
+    <div id="content">
+    </div>
+    <form id="updateForm" name="updateForm" style="display: none;">
+      <fieldset>
+        <legend>Uppdatera posten:</legend>
+        <input type="hidden" name="id">
+        <label for="companyname">Företagsnamn:</label><br>
+        <input type="text" id="companyname" name="companyname" required><br>
+        <label for="jobtitle">Jobtitel:</label><br>
+        <input type="text" id="jobtitle" name="jobtitle" required><br>
+        <label for="location">Arbetsort:</label><br>
+        <input type="text" id="location" name="location" required><br>
+        <label for="startdate">Startdatum:</label><br>
+        <input type="date" id="startdate" name="startdate" required><br>
+        <label for="enddate">Slutdatum:</label><br>
+        <input type="date" id="enddate" name="enddate"><br>
+        <label for="description">Beskrivning:</label><br>
+        <textarea name="description" id="description"></textarea><br>
+        <button type="submit" class="update">Uppdatera</button>
+        <button type="button" id="cancel" class="delete">Avbryt</button>
+      </fieldset>
+    </form>
+  </main>
 
   <footer>
     <p>
