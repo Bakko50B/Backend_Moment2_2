@@ -23,21 +23,25 @@
   <div id="content">
 
   </div>
-  <form id="updateForm" style="display: none;">
-    <input type="hidden" name="id">
-    <label for="companyname">Företagsnamn:</label><br>
-    <input type="text" name="companyname" required><br>
-    <label for="jobtitle">Jobtitel:</label><br>
-    <input type="text" name="jobtitle" required><br>
-    <label for="location">Arbetsort:</label><br>
-    <input type="text" name="location" required><br>
-    <label for="startdate">Startdatum:</label><br>
-    <input type="date" name="startdate" required><br>
-    <label for="enddate">Slutdatum:</label><br>
-    <input type="date" name="enddate"><br>
-    <label for="description">Beskrivning:</label><br>
-    <textarea name="description"></textarea><br>
-    <button type="submit">Uppdatera</button>
+  <form id="updateForm" name="updateForm" style="display: none;">
+    <fieldset>
+      <legend>Uppdatera posten:</legend>
+      <input type="hidden" name="id">
+      <label for="companyname">Företagsnamn:</label><br>
+      <input type="text" name="companyname" required><br>
+      <label for="jobtitle">Jobtitel:</label><br>
+      <input type="text" name="jobtitle" required><br>
+      <label for="location">Arbetsort:</label><br>
+      <input type="text" name="location" required><br>
+      <label for="startdate">Startdatum:</label><br>
+      <input type="date" name="startdate" required><br>
+      <label for="enddate">Slutdatum:</label><br>
+      <input type="date" name="enddate"><br>
+      <label for="description">Beskrivning:</label><br>
+      <textarea name="description"></textarea><br>
+      <button type="submit" class="update">Uppdatera</button>
+      <button type="button" id="cancel" class="delete">Avbryt</button>
+    </fieldset>
 </form>
 
   <footer>

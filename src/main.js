@@ -47,7 +47,8 @@ const populateForm = (postData) => {
   form.querySelector('[name="startdate"]').value = postData.startdate.split('T')[0];
   form.querySelector('[name="enddate"]').value = postData.enddate ? postData.enddate.split('T')[0] : '';
   form.querySelector('[name="description"]').value = postData.description || '';
-  form.querySelector('[name="id"]').value = postData.id;                
+  form.querySelector('[name="id"]').value = postData.id; 
+  form.scrollIntoView({ behavior: 'smooth', block: 'center' });               
 };
 
 // Händelse hantering av knapparna UPPDATERA och DELETE
@@ -134,4 +135,11 @@ document.addEventListener('DOMContentLoaded', () => {
           alert('Ett fel uppstod vid uppdateringen.');
       }
   });
+});
+
+const myCancelBtn = document.getElementById("cancel");
+
+myCancelBtn.addEventListener("click", () => {
+  const updateForm = document.getElementById('updateForm');
+  updateForm.style.setProperty("display", "none"); 
 });
