@@ -9,6 +9,16 @@
 </head>
 
 <body>
+    <header>
+        <h1>Moment 2 - OM</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Hem</a></li>
+                <li><a href="add.html">Ny post</a></li>
+                <li class="active"><a href="about.html">Om</a></li>
+            </ul>
+        </nav>
+    </header>
     <main>
 
         <div class="center">
@@ -22,9 +32,10 @@
                 sköter om kontakt med en databas och producerar JSON innehåll. Samt en del som konsumerar och tar hand
                 om JSON innehållet från det API som del 1 producerar. Sidan du läser nu finns på del 2.
             </p>
-            <h2>Moment 1</h2>
-            <p>Jag började min uppgift med att göra moment 1. I kursmaterial finns det bra information om hur man skapar
-                ett REST API. Jag följde informationen i video och text på hur man kan göra för att skapa backend-delen
+            <h2>Moment 2_1</h2>
+            <p>Jag började min uppgift med att göra delmoment 1. I kursmaterialet finns det bra information om hur man
+                skapar ett REST API. Jag följde informationen i video och text på hur man kan göra för att skapa
+                backend-delen
                 i uppgiften.<br>
                 Jag använde även grunden från det <a href="https://github.com/matdah/express-sample-api">tillgängliga
                     repo</a> som vi kunde använda för att skapa serverdelen.
@@ -32,8 +43,8 @@
             <h3>Databas</h3>
             <p>Jag har en mySql/MariaDB som databas på serversidan. Första momentet gjorde jag med sqlite och ville nu
                 byta databas för att använda i skarpt läge. Tidigare har jag endast använt mysql för några övningar som
-                jag jort i denna kurs. <br>
-                Jag valde att följa strukturen som finns föreslagen på kursportalen.
+                jag gjort i denna kurs. <br>
+                Jag valde att följa strukturen som finns som förslag på kursportalen.
                 <span>databas: cv <br>
                     tabell: workexperience <br>
                     | id | companyname | jobtitle | location | extra: startdate | enddate | description | <br>
@@ -43,34 +54,99 @@
             <p>
                 För mig kändes det naturligt att tillåta NULL i <span>enddate</span> och <span>description.</span> Att
                 lägga till ett arbete som man är i just nu kräver ett "öppet" slut. Detsamma gäller fältet
-                <span>description.</span> Jag känner att vissa arbeten inte kräver en beskriving och därför kan det
+                description (beskrivning). Jag känner att vissa arbetserfarenheter inte kräver en beskrivning och därför
+                kan det
                 fältet få vara valfritt.
             </p>
             <h3>API</h3>
-            <p>APIet hanterar de olika delarna i CRUD.</p>
+            <h4>APIet hanterar de olika delarna i CRUD</h4>
             <ul>
                 <li>Create</li>
                 <li>Read</li>
                 <li>Update</li>
                 <li>Delete</li>
             </ul>
-            <p>Endpoints i APIet är:</p>
+            <h4>Endpoints i APIet är:</h4>
             <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li><span>http://localhost:3000/api</span><br>
+                    Ger tillbaka ett svar som presenterar APIet (get)
+                </li>
+                <li><span>http://localhost:3000/api/workexp</span><br>
+                    Ger tillbaka alla poster som finns i databasen. <br>
+                    Om tomt så meddelas det från APIet. (get)
+                </li>
+                <li><span>http://localhost:3000/api/workexp/:id</span><br>
+                    Ger tillbaka posten som motsvarar id i databasen. <br>
+                    Om inte det hittas så meddelas det från APIet. (get)
+                </li>
+
+                <li><span>http://localhost:3000/api/workexp</span><br>
+                    Lägger till en ny post i databasen. <br>
+                    Med felmeddelande om det inte fungerar. (post)
+                </li>
+                <li><span>http://localhost:3000/api/workexp/:id</span><br>
+                    Uppdaterar posten med motsvarande "id". <br>
+                    Hanterar fel som övriga endpoints. (put)
+                </li>
+                <li><span>http://localhost:3000/api/workexp/:id</span><br>
+                    Raderar posten med "id" ur tabellen. <br>
+                    Hanterar fel som övriga endpoints. (delete)
+                </li>
+                <li><span>http://localhost:3000</span> <br>
+                    Hanterar all övrig trafik på domänen. <br>
+                    Ger "Route not found" i konsollen.</li>
             </ul>
             <h3>Kontroller</h3>
-            <p>För att validera data och ta hand om felinmatningar har jag inför kontroller av data och fält. Det finns
+            <p>För att validera data och ta hand om felinmatningar har jag infört kontroller av data och fält. Det finns
                 hantering av fel i databas&shy;uppkopplingar också. <br>
                 Jag uppdaterade <span>server.js</span> i slutet av arbetet i moment2_2. Jag ville implementera en
-                updatefunktion. Jag saknade då en get-route på serverdeln för att ta han om anrop till en enskild post.
+                updatefunktion. Jag saknade då en get-route på serverdeln för att ta hand om anrop till en enskild post.
+                (se punkterna om endpoints ovan)
             </p>
+
+            <p>Efter utförliga tester med hjälp av Thunder client i VSC så var det dags för delmoment 2.</p>
+            <h2>Moment 2_2</h2>
+            <p>Att göra Moment 2_2 var i mångt och mycket att använda redan kända kunskaper, med några undantag. I
+                tidigare kurser som vi använt APIer har
+                inga införande, borttagande och uppdatering av poster skett. Eftersom det finns möjlighet att göra det
+                mot ett eget skapat API så är det en nyttig uppgift att få prova på just detta.</p>
+            <p>I verkliga scenarier så är det nog troligtvis uteslutande get-anrop som kan ske för icke autentiserade
+                användare. Jag antar att vi kommer få lära oss autentisering i kommande uppgifter.</p>
+            <p>För att servern ska veta vilken typ av anrop som sker så behöver <span>method: 'typavmetod'</span>
+                skickas med så servern vet vilken route som ska användas. </p>
+            <h3>Mina val</h3>
+            <p>Jag kände att jag hade bra flyt när jag gjorde dessa uppgifter så i delmoment 2 valde jag att lägga till
+                den valfria möjligheten uppdatera en post.
+                Det var (nästan) lika mycket jobb med den delen som alla de de övriga i delmoment 2. Eftersom jag
+                dessutom inte hade en route som kunde hämta en enskild post från APIet fick jag lägga till den på
+                serversiden (delmoment 1). Ett till formulär behövdes, som jag denna gång valde att lägga dolt på
+                index-sidan. Jag har i en tidigare uppgift gjort som ett modalt fönster, så denna gång ville jag göra en
+                annan lösning. Vid önskan om uppdatering så visas formuläret. Jag fick jobba ett tag med att googla mig
+                fram till hur man får formuläret i synfältet efter att det öppnats. När det finns många poster att visa
+                så märktes det inte att det visades en ny del på sidan. Lösningen jag hittade blev riktigt snygg tycker
+                jag, med "smooth" skrollning till formuläret. <br>
+                Det är inte första gången jag funderat på hur man skulle klara sig utan att möjligheten att söka efter
+                lösningar på nätet.
+            </p>
+            <h2>Slutsatser</h2>
+            <p>Denna uppgift har varit väldigt kul att göra. <br>
+                Jag hade faktiskt inte koll på hur JSON-data som hämtas från ett API kommer från en databas. Jag trodde helt enkelt att det var
+                "någon stackare" som hade som uppgift att skriva JSON-filer. Sånt jobb vill man inte ha! <br> Såhär efter
+                kursdelen så kan man ju fundera på att jag inte fattat det innan. 
+            </p>
+            <p>
+                Nu känns det som om jag skulle kunna jobba med att  producera JSON-innehåll. Det är väldigt smidigt att använda en databas för ändamålet.
+            </p>
+            <p>Jag har lär mig massor. Både mer i JavaScript men framför allt inom backend och serverteknik.</p>
+            <p>Det finns så mycket bra resurser på nätet att inhämta kunskaper från, inte minst kursportalen på <a href="https://miun.se">miun.se</a></p>
 
         </div>
     </main>
+    <footer>
+        <p>
+            <a href="mailto:tolu2403@student.miun.se">Torbjörn Lundberg</a>
+        </p>
+    </footer>
 </body>
 
 </html>

@@ -31,8 +31,8 @@ async function getData() {
         <li><span class="bold">Arbetsbeskrivning:</span> ${description}</li>
         <li><span class="bold">Postcreated:</span> ${dataelement.postcreated.split('T')[0]}</li> 
         <li>
-          <button class="update" id="update" value="${dataelement.id}">Uppdatera</button> 
-          <button class="delete" id="delete" value="${dataelement.id}">Radera</button>
+          <button class="update" value="${dataelement.id}">Uppdatera</button> <!-- id="update" -->
+          <button class="delete" value="${dataelement.id}">Radera</button> <!-- id="delete" -->
         </li>
       </ul>
     `;
