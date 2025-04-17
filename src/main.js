@@ -13,8 +13,8 @@ async function getData() {
 
   data.forEach(dataelement => {
     let endDate = dataelement.enddate ? dataelement.enddate.split('T')[0] : "Pågående";
-    if (endDate === "0000-00-00") {
-      endDate = "Pågående";
+    if (endDate === "0000-00-00" || endDate === "Invalid Date") {
+      endDate = "Slutdatum saknas";
     }
     let description = dataelement.description;
     if (!description) {
