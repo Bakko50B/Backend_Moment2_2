@@ -13,11 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const formData = new FormData(form);
         const jsonData = Object.fromEntries(formData.entries()); // Gör om till JSON
 
-        // for (const [key, value] of formData.entries()) {  //Kontroll av data under utvecklingen
-        //     console.log(`${key}: ${value}`);
-        // }
-
-        let isValid = true; // Flagga för att spåra validering
+        let isValid = true; 
         let errors = [];
 
         // Exempel på validering
