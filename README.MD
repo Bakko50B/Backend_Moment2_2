@@ -27,5 +27,6 @@ Starta Vite:
 Projektet är utvecklat av Torbjörn Lundberg.
   
 ## Tillgänglighet  
-Repot kommer vara öppet (publikt) unbder en begränsad tid  
+Repot kommer vara öppet (publikt) under en begränsad tid  
+Repot kommer att återgå till privat läge efter rättning  
 
