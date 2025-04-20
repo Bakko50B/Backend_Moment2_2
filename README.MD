@@ -1,7 +1,8 @@
 # Moment 2.2 - Backend Development
 
 ## Beskrivning
-Detta repo är en del av kursen i Webbutveckling Termin 2. Syftet med Moment 2.2 är att använda det u Moment 2_1 utvecklade API:et.
+Detta repo är en del av kursen Backendutveckling från programmet Webbutveckling.   
+Syftet med Moment 2_2 är att använda det i Moment 2_1 utvecklade API:et.
 
 ## Funktioner
 - Skapa, läsa, uppdatera och radera data (CRUD).
